@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# QolHub
 
-## Getting Started
+Nidaam kiro guryo ah oo isku xidhaya milkiilayaasha iyo kireystayaasha Somaliland (gaar ahaan Boorama).
 
-First, run the development server:
+## Tech Stack
+
+- **Next.js 16** (App Router) — frontend + API
+- **MongoDB** + Mongoose
+- **Tailwind CSS**
+- **JWT** cookies (auth)
+
+## Bilow
+
+### 1. MongoDB
+
+Ku rakib MongoDB local ama isticmaal [MongoDB Atlas](https://www.mongodb.com/atlas).
+
+### 2. Environment
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.example .env.local
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ku dar:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+MONGODB_URI=mongodb://127.0.0.1:27017/qolhub
+JWT_SECRET=secret-agaaga-oo-adag
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. Install & Run
 
-## Learn More
+```bash
+cd qolhub
+npm install
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Fur: http://localhost:3000
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. Xogta demo (seed)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Marka MongoDB diyaar yahay:
 
-## Deploy on Vercel
+```bash
+curl -X POST http://localhost:3000/api/seed
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Akoonnada demo:**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Role     | Email               | Password      |
+|----------|---------------------|---------------|
+| Admin    | admin@qolhub.so     | password123   |
+| Milkiile | milkiile@qolhub.so  | password123   |
+| Kireyste | tenant@qolhub.so    | password123   |
+
+## Qaab-dhismeedka
+
+- `/` — Bogga hore
+- `/properties` — List of properties
+- `/properties/[id]` — Property details
+- `/auth/login`, `/auth/register`
+- `/dashboard` — Milkiile (ku dar guri, maamul)
+- `/admin` — Maamulaha (ansixinta guryaha)
+
+## Flow-ga nidaamka
+
+1. **Milkiile** wuu is-diiwaan geliyaa → wuxuu ku darayaa guri (banaan oo dhan **ama** qolal banaan guri la dagan)
+2. **Admin** wuxuu ansixiyaa guriga (pending → active)
+3. **Kireyste** wuxuu raadiyaa guryaha → markuu helo wuu is-diiwaan geliyaa → wuxuu diraa fariin milkiilaha
+
+## Mustaqbalka
+
+- Lacag bixinta (payments)
+- Upload sawirro (Cloudinary/S3)
+- Fariimaha tooska ah
+
+## Qalin-jabinta
+
+Mashruucan wuxuu xallinayaa dhibaatada helitaanka guryaha Boorama — ardayda jaamacadda iyo dadka soo booqda.
