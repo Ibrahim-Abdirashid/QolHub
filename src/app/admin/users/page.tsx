@@ -37,9 +37,10 @@ export default async function AdminUsersPage() {
     role: u.role as string,
     phone: u.phone as string | undefined,
     blocked: (u.blocked as boolean) ?? false,
-    accountStatus: (u.accountStatus as string) ?? null,
+    blockReason: u.blockReason as string | undefined,
+    accountStatus: (u.accountStatus as "pending" | "approved" | "rejected" | null) ?? null,
     isDeleted: (u.isDeleted as boolean) ?? false,
-    createdAt: (u.createdAt as Date).toISOString(),
+    createdAt: u.createdAt instanceof Date ? u.createdAt.toISOString() : String(u.createdAt),
   });
 
   const serialized = users.map(serializeUser);
@@ -50,7 +51,7 @@ export default async function AdminUsersPage() {
       <div>
         <h1 className="text-3xl font-bold text-gray-900">User Management</h1>
         <p className="mt-2 text-gray-600">
-          Maamul dadka is-diiwaangeliyey — block, unblock, tirtir
+          Manage registered users — block, unblock, delete
         </p>
       </div>
 
